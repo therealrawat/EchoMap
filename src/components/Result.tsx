@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import type { AnalysisResult } from '../types';
-import { Calendar, Target } from 'lucide-react';
+import { Calendar, Target, Download } from 'lucide-react';
+import { generatePDF } from '../utils/generatePDF';
 
 interface ResultProps {
   result: AnalysisResult;
@@ -8,6 +10,7 @@ interface ResultProps {
 
 const Result = ({ result, onRestart }: ResultProps) => {
   const { scores, pastMistakes, roadmap } = result;
+  const [includeAnalytics, setIncludeAnalytics] = useState(true);
 
   return (
     <div className="min-h-screen py-12 px-6">
@@ -110,6 +113,32 @@ const Result = ({ result, onRestart }: ResultProps) => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Download PDF Section */}
+        <div className="bg-vermeer-white border-2 border-vermeer-deepBlue rounded-lg p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 cursor-pointer group">
+                <input
+                  type="checkbox"
+                  checked={includeAnalytics}
+                  onChange={(e) => setIncludeAnalytics(e.target.checked)}
+                  className="w-5 h-5 cursor-pointer accent-vermeer-ochre border-2 border-vermeer-softBlue rounded focus:ring-2 focus:ring-vermeer-ochre focus:ring-offset-2"
+                />
+                <span className="text-vermeer-deepBlue text-sm select-none">
+                  Include analytics (scores & patterns)
+                </span>
+              </label>
+            </div>
+            <button
+              onClick={() => generatePDF(result, includeAnalytics)}
+              className="flex items-center gap-2 px-6 py-3 bg-vermeer-ochre text-vermeer-deepBlue rounded-lg hover:bg-vermeer-darkOchre transition-colors font-medium"
+            >
+              <Download className="w-5 h-5" />
+              Download Roadmap PDF
+            </button>
           </div>
         </div>
 
