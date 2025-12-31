@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --color-vermeer-deep-blue: #1e3a5f;
+  --color-vermeer-soft-blue: #2d4a6b;
+  --color-vermeer-white: #f5f5f0;
+  --color-vermeer-ochre: #d4a574;
+  --color-vermeer-dark-ochre: #b8935f;
+  
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-family-mono);
+    background-color: var(--color-vermeer-white);
+    color: var(--color-vermeer-deep-blue);
+  }
+}
+
+/* Custom color utilities for camelCase naming used in components */
+@layer utilities {
+  .text-vermeer-deepBlue { color: var(--color-vermeer-deep-blue); }
+  .text-vermeer-softBlue { color: var(--color-vermeer-soft-blue); }
+  .text-vermeer-white { color: var(--color-vermeer-white); }
+  .text-vermeer-ochre { color: var(--color-vermeer-ochre); }
+  .text-vermeer-darkOchre { color: var(--color-vermeer-dark-ochre); }
+  
+  .bg-vermeer-deepBlue { background-color: var(--color-vermeer-deep-blue); }
+  .bg-vermeer-softBlue { background-color: var(--color-vermeer-soft-blue); }
+  .bg-vermeer-white { background-color: var(--color-vermeer-white); }
+  .bg-vermeer-ochre { background-color: var(--color-vermeer-ochre); }
+  .bg-vermeer-darkOchre { background-color: var(--color-vermeer-dark-ochre); }
+  
+  .border-vermeer-deepBlue { border-color: var(--color-vermeer-deep-blue); }
+  .border-vermeer-softBlue { border-color: var(--color-vermeer-soft-blue); }
+  .border-vermeer-white { border-color: var(--color-vermeer-white); }
+  .border-vermeer-ochre { border-color: var(--color-vermeer-ochre); }
+  
+  .font-mono { font-family: var(--font-family-mono); }
+}
